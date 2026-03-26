@@ -1,0 +1,17 @@
+# Local Databases
+storage/database/*.sqlite [cite: 139]
+
+# Sessions & Cache
+storage/cache/session.json [cite: 140]
+
+# Logs
+storage/logs/*.log
+storage/logs/sync.log [cite: 140]
+
+# Downloaded Images
+storage/images/* [cite: 55]
+public/images/* [cite: 138]
+
+# Ignore app config to protect local paths and server URLs
+# Note: Create a copy named 'config/app.example.php' and commit that instead.
+config/app.php [cite: 138]
