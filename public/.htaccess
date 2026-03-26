@@ -1,0 +1,11 @@
+Options -MultiViews
+RewriteEngine On
+
+RewriteBase /MiniLedger/CASHIER/public/
+
+# لو الملف موجود فعلاً — سيبه (css, js, images)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# كل حاجة تاني → index.php
+RewriteRule ^ index.php [QSA,L]

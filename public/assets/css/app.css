@@ -1,0 +1,898 @@
+/* ── Reset (Cleaned Duplicates) ─────────────────────────────────── */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ── Variables (Enhanced for Depth & Glass Styles) ────────────────── */
+:root {
+    --bg: #f0f4f8; /* الخلفية الروعة */
+    --surface: #ffffff;
+    --surface-2: #f1f5f9;
+    --border: #e2e8f0;
+    --text-primary: #0f172a;
+    --text-secondary: #475569;
+
+    /* الألوان اللي اخترتها مع تظبيط الدرجات */
+    --primary: #0c3f82;         /* الأزرق النيلي اللي اخترته */
+    --primary-light: #dbeafe;   /* درجة فاتحة للتركيز والخلفيات */
+    --dusty-gray: #64748b;      /* الرمادي المترب */
+    --navbar-dark: #1e293b;     /* عمق الموجة */
+    --text-muted: #94a3b8;      /* رمادي فاتح للنصوص الباهتة */
+
+    /* ألوان الحالة (Standard but soft) */
+    --success: #10b981;         /* أخضر زمردي مودرن */
+    --success-light: #d1fae5;
+    --warning: #f59e0b;         /* كهرماني */
+    --warning-light: #fef3c7;
+    --danger: #ef4444;          /* أحمر ناعم */
+    --danger-light: #fee2e2;
+    --border-hover: #cbd5e1;
+
+    /* تظبيط الحواف والظلال لعمق أكتر */
+    --radius: 12px;             /* زودنا الانحناء شوية للمسة مودرن */
+    --radius-lg: 18px;          /* انحناء أكبر للكروت الرئيسية */
+    --transition: .25s ease;     /* حركة أنعم */
+
+    /* ظلال أنعم وأكثر انتشاراً لإعطاء عمق واقعی */
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.03);
+    --shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+    --shadow-lg: 0 25px 35px -5px rgba(0, 0, 0, 0.08), 0 10px 15px -5px rgba(0, 0, 0, 0.03);
+}
+
+/* ── Base ────────────────────────────────────────────────────────── */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    font-size: 14px;
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* ── Navbar (Fixed Wave & Contrast - Kept) ─────────────────────────── */
+.navbar {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    padding: 0 40px;
+
+    /* تظبيط الاندماج الموجي */
+    background-color: var(--primary);
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.1), transparent),
+        radial-gradient(circle at 80% -20%, var(--dusty-gray) 0%, var(--navbar-dark) 45%, transparent 75%),
+        linear-gradient(90deg, var(--primary) 0%, #1a4a8e 100%);
+
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15); /* ظل أنعم تحت الناف بار */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbar-brand {
+    font-size: 26px;
+    font-weight: 900;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-transform: uppercase;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-brand i {
+    font-size: 32px;
+    color: #ffffff;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+.navbar-spacer {
+    flex: 1;
+}
+
+.navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* ── Navbar Elements (Kept) ── */
+.navbar .sync-status,
+.navbar .navbar-user {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #ffffff !important;
+    padding: 8px 16px;
+    border-radius: var(--radius);
+    font-weight: 500;
+}
+
+.navbar .btn-secondary {
+    background: rgba(255, 255, 255, 0.15);
+    color: #ffffff !important;
+    border: none;
+    font-weight: 600;
+    padding: 8px 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: var(--radius);
+}
+
+.navbar .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.25);
+    color: #ffffff !important;
+    transform: translateY(-1px);
+}
+
+.navbar .badge-primary {
+    background: #ffffff;
+    color: var(--primary);
+    font-weight: 800;
+}
+
+/* زرار Logout */
+.navbar .btn-logout {
+    color: #ffffff !important;
+    background: rgba(0, 0, 0, 0.25) !important;
+    border-radius: var(--radius);
+    font-weight: 600;
+}
+
+.navbar .btn-logout:hover {
+    background: rgba(0, 0, 0, 0.45) !important;
+}
+
+/* ── Sync Status ─────────────────────────────────────────────────── */
+.sync-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: var(--radius);
+    font-size: 13px;
+    font-weight: 600;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    background: var(--surface);
+    cursor: default;
+}
+
+.sync-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--text-muted);
+}
+
+.sync-dot.online {
+    background: var(--success);
+    box-shadow: 0 0 8px var(--success-light); /* وهج أنعم */
+}
+
+.sync-dot.pending {
+    background: var(--warning);
+    box-shadow: 0 0 8px var(--warning-light);
+}
+
+.sync-dot.offline {
+    background: var(--danger);
+    box-shadow: 0 0 8px var(--danger-light);
+}
+
+/* ── Badges ──────────────────────────────────────────────────────── */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 22px;
+    height: 22px;
+    padding: 0 6px;
+    border-radius: 99px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.badge-primary {
+    background: var(--primary);
+    color: #fff;
+}
+
+.badge-warning {
+    background: var(--warning);
+    color: #fff;
+}
+
+.badge-danger {
+    background: var(--danger);
+    color: #fff;
+}
+
+.badge-success {
+    background: var(--success);
+    color: #fff;
+}
+
+/* ── Buttons ─────────────────────────────────────────────────────── */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 8px 18px;
+    border-radius: var(--radius);
+    border: 1px solid transparent;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all var(--transition);
+    white-space: nowrap;
+    text-decoration: none;
+}
+
+.btn:disabled {
+    opacity: .5;
+    cursor: not-allowed;
+    pointer-events: none;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: #fff;
+    border-color: var(--primary);
+    box-shadow: 0 2px 6px rgba(12, 63, 130, 0.15); /* ظل خفيف للزرار */
+}
+
+.btn-primary:hover {
+    background: #093166; /* تغميق بسيط للهوفر */
+    border-color: #093166;
+    transform: translateY(-1.5px);
+    box-shadow: 0 4px 12px rgba(12, 63, 130, 0.25);
+}
+
+.btn-secondary {
+    background: var(--surface);
+    color: var(--text-secondary);
+    border-color: var(--border);
+}
+
+.btn-secondary:hover {
+    border-color: var(--text-muted);
+    color: var(--text-primary);
+    background: var(--surface-2);
+}
+
+.btn-success {
+    background: var(--success);
+    color: #fff;
+    border-color: var(--success);
+    box-shadow: 0 2px 6px rgba(16, 185, 129, 0.15);
+}
+
+.btn-success:hover {
+    opacity: .95;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(16, 185, 129, 0.2);
+}
+
+.btn-danger {
+    background: var(--danger-light);
+    color: var(--danger);
+    border-color: transparent;
+}
+
+.btn-danger:hover {
+    background: var(--danger);
+    color: #fff;
+}
+
+.btn-ghost {
+    background: transparent;
+    color: var(--text-secondary);
+    border-color: transparent;
+}
+
+.btn-ghost:hover {
+    background: var(--surface-2);
+    color: var(--text-primary);
+}
+
+.btn-lg {
+    padding: 12px 26px;
+    font-size: 15px;
+}
+
+.btn-sm {
+    padding: 6px 14px;
+    font-size: 13px;
+}
+
+/* ── Main Content ────────────────────────────────────────────────── */
+.main {
+    padding: 32px 24px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+/* ── Page Header ─────────────────────────────────────────────────── */
+.page-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 28px;
+    gap: 16px;
+}
+
+.page-title {
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--text-primary);
+    letter-spacing: -.5px;
+}
+
+.page-subtitle {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-top: 3px;
+}
+
+/* ── Toolbar & Wider Search ──────────────────────────────────────── */
+.toolbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.search-box {
+    position: relative;
+    flex: 1;
+    min-width: 250px;
+    max-width: 450px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 11px 14px 11px 40px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 14px;
+    color: var(--text-primary);
+    outline: none;
+    transition: all var(--transition);
+    box-shadow: var(--shadow-sm); /* ظل خفيف على الإنبوت */
+}
+
+.search-box input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-light), var(--shadow-sm);
+}
+
+.search-box .search-icon {
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 16px;
+    pointer-events: none;
+}
+
+.filter-select {
+    padding: 11px 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 14px;
+    color: var(--text-primary);
+    outline: none;
+    cursor: pointer;
+    transition: all var(--transition);
+    box-shadow: var(--shadow-sm);
+}
+
+.filter-select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-light), var(--shadow-sm);
+}
+
+/* ── Cards (Enhanced Depth) ───────────────────────────────────────── */
+.card {
+    background: var(--surface);
+    border: 1px solid rgba(0, 0, 0, 0.03); /* حدود أرق جداً */
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow); /* الظل الجديد الناعم */
+    transition: box-shadow var(--transition);
+}
+
+.card:hover {
+    box-shadow: var(--shadow-lg); /* تعميق الظل عند الهوفر */
+}
+
+.card-header {
+    padding: 18px 24px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.card-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.card-body {
+    padding: 24px;
+}
+
+/* ── Product & Category Grid ─────────────────────────────────────── */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 24px; /* توسيع المسافة شوية */
+}
+
+.product-card {
+    background: var(--surface);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    border-radius: var(--radius);
+    padding: 16px;
+    cursor: pointer;
+    transition: all var(--transition);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    box-shadow: var(--shadow);
+}
+
+.product-card:hover {
+    border-color: var(--primary-light);
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-3px); /* حركة خفيفة للفوق */
+}
+
+/* ── Image Wrappers (Dashboard & Products) ── */
+.product-img-wrapper {
+    width: 100%;
+    height: 160px;
+    background: var(--surface-2);
+    border-radius: 10px; /* انحناء داخلي أنعم */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    margin-bottom: 8px;
+    border: 1px solid var(--border);
+}
+
+.product-img-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 12px;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-img-wrapper img {
+    transform: scale(1.08);
+}
+
+.product-img-fallback {
+    font-size: 48px;
+    color: var(--text-muted);
+    transition: color var(--transition);
+}
+
+.product-card:hover .product-img-fallback {
+    color: var(--primary);
+}
+
+/* Category Images (Dashboard) */
+.category-img {
+    width: 120px;
+    height: 120px;
+    border-radius: var(--radius);
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all var(--transition);
+}
+
+.category-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 10px;
+    transition: transform 0.3s ease;
+}
+
+.category-card:hover .category-img {
+    border-color: var(--primary-light);
+}
+
+.category-card:hover .category-img img {
+    transform: scale(1.08);
+}
+
+.category-img-fallback {
+    font-size: 48px;
+    color: var(--text-muted);
+}
+
+.category-card:hover .category-img-fallback {
+    color: var(--primary);
+}
+
+/* Category Card (Placeholder structure since it was referred above but style not fully defined) */
+.category-card {
+    transition: all var(--transition);
+}
+
+/* ── Product Info ── */
+.product-card.low-stock {
+    border-color: var(--warning);
+}
+
+.product-card.out-of-stock {
+    opacity: .6;
+    pointer-events: none;
+}
+
+.product-name {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.4;
+}
+
+.product-sku {
+    font-size: 12px;
+    color: var(--text-muted);
+    font-family: monospace;
+}
+
+.product-location {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.product-price {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--primary);
+    margin-top: auto;
+}
+
+.product-stock {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.product-stock.low {
+    color: var(--warning);
+}
+
+.product-stock.out {
+    color: var(--danger);
+}
+
+.product-actions {
+    display: flex;
+    gap: 8px;
+    margin-top: 6px;
+}
+
+.qty-input {
+    width: 60px;
+    padding: 8px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 14px;
+    text-align: center;
+    outline: none;
+    background: var(--surface);
+    color: var(--text-primary);
+    transition: all var(--transition);
+    font-weight: 600;
+}
+
+.qty-input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+/* ── Cart Layout ─────────────────────────────────────────────────── */
+.cart-layout {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 24px;
+    align-items: start;
+}
+
+@media (max-width: 960px) {
+    .cart-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ── Table (Enhanced) ─────────────────────────────────────────────── */
+.table-wrap {
+    background: var(--surface);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+thead th {
+    padding: 16px;
+    text-align: left;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-secondary); /* أغمق شوية للوضوح */
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--border);
+}
+
+tbody td {
+    padding: 16px;
+    font-size: 14px;
+    color: var(--text-primary);
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+tbody tr:hover td {
+    background: #f8fafc; /* درجة فاتحة جداً للهوفر */
+}
+
+.qty-input-sm {
+    width: 65px;
+    padding: 6px 8px;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-weight: 600;
+    text-align: center;
+    outline: none;
+    background: var(--surface);
+    color: var(--text-primary);
+    transition: all var(--transition);
+}
+
+.qty-input-sm:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-light);
+}
+
+/* ── Invoice Summary ─────────────────────────────────────────────── */
+.invoice-summary {
+    background: var(--surface);
+    border: 1px solid rgba(0, 0, 0, 0.03);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow);
+    position: sticky;
+    top: 96px;
+    overflow: hidden;
+}
+
+.invoice-summary-header {
+    padding: 20px 24px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface-2);
+}
+
+.invoice-summary-body {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-label {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--text-secondary);
+}
+
+.form-control {
+    padding: 11px 14px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    font-size: 14px;
+    color: var(--text-primary);
+    outline: none;
+    transition: all var(--transition);
+    width: 100%;
+    box-shadow: var(--shadow-sm);
+}
+
+.form-control:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-light), var(--shadow-sm);
+}
+
+/* ── Summary Box ─────────────────────────────────────────────────── */
+.summary-box {
+    background: var(--surface-2);
+    border-radius: var(--radius);
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    border: 1px solid var(--border);
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.summary-row.total {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text-primary);
+    padding-top: 14px;
+    border-top: 2px dashed var(--border); /* خط منقط للشياكة */
+    margin-top: 4px;
+}
+
+/* ── Empty State ─────────────────────────────────────────────────── */
+.empty-state {
+    text-align: center;
+    padding: 80px 24px;
+    color: var(--text-muted);
+}
+
+.empty-state-icon {
+    font-size: 56px;
+    margin-bottom: 16px;
+    opacity: .7;
+}
+
+.empty-state-title {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+}
+
+.empty-state-text {
+    font-size: 14px;
+}
+
+/* ── Toast Notification (MODERN GLASS EDITION) ─────────────────────── */
+.toast-container {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.toast {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 24px;
+    border-radius: var(--radius);
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2); /* حدود زجاجية خفيفة */
+    min-width: 320px;
+    animation: slideIn .3s ease-out;
+
+    /* تأثير الزجاج (Glassmorphism) للكارت نفسه */
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* تنسيق حالات الرسايل: لون هادي للخلفية، ولون قوي ومضيء للحافة (Border) والأيقونة/النص */
+.toast-success {
+    background: rgba(209, 250, 229, 0.6); /* خلفية خضراء فاتحة جداً وشفافة */
+    color: #065f46; /* نص أخضر غامق جداً للتباين */
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-left: 5px solid var(--success); /* شريط جانبي مضيء */
+}
+
+.toast-error {
+    background: rgba(254, 226, 226, 0.6);
+    color: #991b1b;
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-left: 5px solid var(--danger);
+}
+
+.toast-warning {
+    background: rgba(254, 243, 199, 0.6);
+    color: #92400e;
+    border: 1px solid rgba(245, 158, 11, 0.3);
+    border-left: 5px solid var(--warning);
+}
+
+.toast-info {
+    background: rgba(219, 234, 254, 0.6);
+    color: #1e40af;
+    border: 1px solid rgba(12, 63, 130, 0.3);
+    border-left: 5px solid var(--primary);
+}
+
+/* ── Divider ─────────────────────────────────────────────────────── */
+.divider {
+    height: 1px;
+    background: var(--border);
+    margin: 8px 0;
+}
+
+/* ── Spinner ─────────────────────────────────────────────────────── */
+.spinner {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--border);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin .6s linear infinite;
+    display: inline-block;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
